@@ -248,10 +248,6 @@ function App() {
     showToast('Reading saved!'); setJournalDraft(''); loadReadings();
   };
 
-  const handleSaveClick = () => {
-    if (!session?.user) openAuthModal('save-prompt'); else saveReading();
-  };
-
   const updateJournalEntry = async (id, text) => {
     const { error } = await supabase.from('readings').update({ notes: text }).eq('id', id);
     if (!error) { showToast('Journal saved.'); setEditingJournalId(null); loadReadings(); }
